@@ -11,7 +11,7 @@
         <div>
         <?php 
           //  require_once('../BaseDatos/conexion.php');
-          
+            
         ?>  
         </div>
     </section>
