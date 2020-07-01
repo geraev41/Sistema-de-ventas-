@@ -1,6 +1,4 @@
 <?php
-    getConexion();
-
     function getConexion(){
         $servidor ="localhost";
         $usuario = "root";
