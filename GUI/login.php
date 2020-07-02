@@ -1,8 +1,3 @@
-<?php
-    $msj = ""; 
-    alert($_REQUEST['message']); 
-    
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,10 +15,27 @@
                 <div class="columns">
                    <div class="column is-half
                         is-offset-one-quarter">
-                        <input class="input is-primary" type="text" placeholder="Nombre de usuario" name="txtUser"><br><br>
-                        <input class="input is-primary"  type="password" placeholder="Contraseña" name="txtPass"><br><br>
-                        <input class="button is-outlined is-medium is-danger is-rounded" value="Iniciar Sección" name="btnOk" style="margin-left: 50%;" type="submit">
-                        <input class="button is-outlined is-medium  is-success is-rounded" value="Salir" name="btnSalir" style="margin-left: 30%;" type="submit">
+                        <p  style="margin-left: 35%;">
+                            <img class="is-rounded"src="/Imagenes/icon_user.png"  width="140px">
+                        </p>
+                        <div class="control has-icons-left">
+                            <input class="input is-primary" type="text" placeholder="Nombre de usuario" name="txtUser"><br><br>
+                            <span style ="background-image: url('../Imagenes/icon_username.png'); background-repeat: no-repeat; background-position: center;" class="icon is-small is-left">
+                                <i lass="fas fa-envelope"></i>
+                            </span> 
+                        </div>
+
+                        <div class="control has-icons-left">
+                            <input  class="input is-primary"  type="password" placeholder="Contraseña" name="txtPass"><br><br>
+                            <span style ="background-image: url('../Imagenes/icon_pass.png'); background-repeat: no-repeat; background-position: center;" class="icon is-small is-left">
+                                <i lass="fas fa-envelope"></i>
+                            </span>  
+                        </div>
+                        <input class="button is-outlined is-small is-success is-rounded" value="Salir" name="btnSalir" style="margin-left: 30%;" type="submit">
+                        <input class="button is-outlined is-small is-danger is-rounded" value="Iniciar Sección" name="btnOk" style="margin-left: 50%;" type="submit">
+                        <input class="button is-outlined is-small is-danger is-rounded" value="Crear Una cuenta" name="btnCrearUser" style="margin-left: 50%;" type="submit">
+
+
                    </div>
 
                 </div>

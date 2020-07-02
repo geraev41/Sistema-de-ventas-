@@ -2,12 +2,20 @@
 <?php
 
     include_once ('../Util/Util.php'); 
+    require_once ('../Entidades/User.php');
+    require_once ('../BaseDatos/UserBD.php'); 
+
+
 
     controlar_action(); 
 
     function controlar_action(){
         if(isset($_POST['btnOk'])){
             validar_user(); 
+        }elseif(isset($_POST['btnGuardar'])){
+            guadar_user(); 
+        }elseif(isset($_POST['btnCrearUser'])){
+            header('Location: /GUI/signup.php?status=Registror&message=Crea tu cuenta!');
         }else{
             header('Location: /GUI/index.php?status=error&message=salio');
         }
@@ -16,7 +24,6 @@
 
     function validar_user(){
         try{
-        require_once ('../Entidades/User.php');
         if(isset($_POST['btnOk'])){
             $username = $_POST['txtUser']; 
             $pass = $_POST['txtPass']; 
@@ -55,8 +62,21 @@
         }
     }
 
-    function guadar_user($user){
+    function guadar_user(){
+        //Atrapar datos 
+        $user = new User(); 
+        $user->nombre = "Gerardo";
+        $user->cedula ="207970386";
+        $user->correo ="gespinozav@est.utn.ac.cr";
+        $user->telefono = 83517632; 
+        $user->direcion = "Coopevega de Cutris"; 
+        $user->username="gera1234";
+        $user->password = "1234"; 
+        $user->tipo = 'ad'; 
 
+        if(insertar_user($user)){
+            echo "se guardo"; 
+        }
     }
 
 
