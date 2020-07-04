@@ -30,7 +30,6 @@
             $user = new User();
             $user->username = $username; 
             $user->password = $pass; 
-            validar_espacios($user); 
             if(!empty($username) && !empty($pass)){
                 validar_datos($user); 
             }
@@ -50,8 +49,7 @@
     }
 
     function validar_datos($user){
-        require_once ('../BaseDatos/UserBD.php'); 
-        $userBD = existe_user($user);
+        $userBD = existe_user($user, true);
         if($userBD!=null){
             session_start(); 
             $_SESSION['user'] = $userBD; 
@@ -64,6 +62,7 @@
 
     function guadar_user(){
         //Atrapar datos 
+
         $user = new User(); 
         $user->nombre = "Gerardo";
         $user->cedula ="207970386";
@@ -73,9 +72,12 @@
         $user->username="gera1234";
         $user->password = "1234"; 
         $user->tipo = 'ad'; 
-
-        if(insertar_user($user)){
-            echo "se guardo"; 
+        if(existe_user($user,false)==null){
+            if(insertar_user($user)){
+                echo "se guardo"; 
+            }
+        }else{
+            header('Location: /GUI/signup.php?status=Registro&message=Usuario ya existe!');
         }
     }
 

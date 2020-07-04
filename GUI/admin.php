@@ -16,7 +16,11 @@
     <section class="section">
         <form method="POST" action="../logicaDatos/userDatos.php">
             <div class="container">
-                <input type="submit" value="btnAdmin">
+                <div class="columns">   
+                    <div class="">
+                       <div class="" style="width: 100%; border: red solid 1px;"> Sistema de ventas</div>
+                    </div>
+                </div>
             </div>
         </form>
     </section>    
