@@ -5,7 +5,6 @@
         //atrapar datos 
         $pro = new Producto(); 
         
-
     }
 
 ?>

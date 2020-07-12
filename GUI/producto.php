@@ -37,7 +37,6 @@
                     <input class="" placeholder="Cantidad" name ="txtNombre" type="text"><br><br>
                     <input class="" value="Cancelar" name="btnVolver" type="submit">
                     <input class="" value="Guardar" name="btnAddProducto" type="submit">
-
                 </div>
             </div>
         </div>
