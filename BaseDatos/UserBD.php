@@ -1,29 +1,25 @@
 
 <?php
-   require ('conexion.php'); 
+   require_once ('conexion.php'); 
    require_once ('../Entidades/User.php'); 
    
    function existe_user($user, $islogin){
         $conexion = getConexion(); 
-
         $sqlL = "SELECT * FROM users WHERE username = '$user->username' AND password = '$user->password'";
         $sqlSingup = "SELECT * FROM users WHERE username = '$user->username'"; 
         $sql = $islogin? $sqlL:$sqlSingup; 
+        $resultado = $conexion->query($sql);
 
-        if($conexion){
-            $resultado = $conexion->query($sql);
-            if(mysqli_num_rows($resultado)>0){
-                $usuarios = $resultado->fetch_all();
-                foreach($usuarios as $u){
-                    return obtener_usuario($u); 
-                }
-            }else{
-                return null; 
-            }
-        }else{
-            throw new Exception ("Error de conexion a la base datos"); 
+        if ($conexion->connect_errno) {
+            $conexion->close();
+            return false;
         }
-        
+
+        $usuarios = $resultado->fetch_all();
+        $conexion->close(); 
+        foreach($usuarios as $u){
+            return obtener_usuario($u); 
+        }
     }
     
 
@@ -32,12 +28,14 @@
         $sql = "INSERT INTO `users`(`nombre`, `cedula`, `correo`, `telefono`, `direcion`, `username`, `password`, `tipo`) 
         VALUES ('$user->nombre','$user->cedula','$user->correo','$user->telefono',
         '$user->direcion','$user->username','$user->password','$user->tipo')"; 
-        if($conexion){
-            $resultado = mysqli_query($conexion, $sql);
-            //return (mysql_num_rows($resultado)>0);
-            
+        $resultado = $conexion->query($sql); 
+        if($conexion->connect_errno){
+            $conexion->close();
+            return false; 
         }
-
+        $conexion->close(); 
+        return $resultado; 
+       
     }
 
     function obtener_usuario($userResult){

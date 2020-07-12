@@ -1,0 +1,45 @@
+
+
+
+#idUl{
+    padding: 0%;
+}
+#idUl li a{
+    display: inline;
+}
+
+nav li{
+    display: inline-block; 
+    height:50px;
+    position: relative;
+}
+nav li>ul{
+    display:none;
+}
+nav li:hover>ul {
+    display:block;
+    position:absolute;
+    top:35px;
+    left:10px;
+}
+
+
+nav li ul{
+    display:none;
+    position: absolute;;
+    top:30px;
+    left:120px;
+}
+nav li:hover ul{
+    display:block;
+    position: static;
+    top: 55px; 
+}
+
+nav ul ul li{
+    float:none;
+    top: 0px; 
+}
+nav ul ul a{
+    line-height: 10%;
+}

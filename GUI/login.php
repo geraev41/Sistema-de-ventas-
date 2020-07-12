@@ -1,4 +1,21 @@
 
+<?php
+
+include_once ('../Entidades/User.php'); 
+    session_start(); 
+    if($_SESSION && $_SESSION['user']){
+        $userO = new User();
+        $userO = $_SESSION['user']; 
+      if($userO->tipo=="ad"){
+          header('Location: /GUI/admin.php?status=Inicio sección&message=Admin');
+    }elseif($userO->tipo=="cl"){
+
+    }
+        
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
