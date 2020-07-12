@@ -14,6 +14,7 @@
         return $result; 
     }
 
+    
     function delete_categoria($id){
         include_once ('conexion.php');
         $con = getConexion(); 

@@ -14,7 +14,6 @@
     function guardar_categoria(){
         //atrapar datos 
         $categoria = new Categoria(); 
-
         $categoria->nombre ="Productos domesticos"; 
         if(insertar_categoria($categoria)){
             header('Location: /GUI/admin.php?status=Inicio sección&message=Se guardo con exitó una categoría!');
