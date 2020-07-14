@@ -1,39 +1,25 @@
 
-
-
-#idUl{
-    padding: 0%;
-}
 #idUl li a{
     display: inline;
 }
 
 nav li{
     display: inline-block; 
-    height:50px;
+    height:30px;
+    padding-top: 15px;
     position: relative;
 }
-nav li>ul{
-    display:none;
-}
-nav li:hover>ul {
-    display:block;
-    position:absolute;
-    top:35px;
-    left:10px;
-}
-
 
 nav li ul{
     display:none;
     position: absolute;;
-    top:30px;
+    top:0px;
     left:120px;
 }
 nav li:hover ul{
     display:block;
     position: static;
-    top: 55px; 
+    top: 0px; 
 }
 
 nav ul ul li{
@@ -41,5 +27,6 @@ nav ul ul li{
     top: 0px; 
 }
 nav ul ul a{
-    line-height: 10%;
+    line-height: 5%;
 }
+

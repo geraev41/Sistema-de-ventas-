@@ -2,6 +2,7 @@
 <?php
 
 include_once ('../Entidades/User.php'); 
+
     session_start(); 
     if($_SESSION && $_SESSION['user']){
         $userO = new User();
@@ -10,6 +11,8 @@ include_once ('../Entidades/User.php');
           header('Location: /GUI/admin.php?status=Inicio sección&message=Admin');
     }elseif($userO->tipo=="cl"){
 
+    }else{
+        header ('Location: /GUI/index.php?status=Inicio sección'); 
     }
         
     }

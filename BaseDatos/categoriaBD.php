@@ -1,6 +1,7 @@
 <?php
     
     require_once ('../Entidades/Categoria.php'); 
+    include_once ('productoBD.php'); 
 
     function insertar_categoria($categoria){
         $con = getConexion(); 
@@ -50,9 +51,11 @@
 
 
     function obtener_categoria($catResult){
+        $listPro = mostrar_productos_x_categoria($catResult[0]); 
         $cat= new Categoria(); 
         $cat->id = $catResult[0]; 
         $cat->nombre = $catResult[1]; 
+        $cat->listaProductos =$listPro ? $listPro:NULL; 
         return $cat; 
     }
 
