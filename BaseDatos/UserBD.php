@@ -23,11 +23,28 @@
     }
     
 
+    function obtener_clientes(){
+        $conexion = getConexion(); 
+        $sql = "SELECT * FROM users"; 
+
+        if ($conexion->connect_errno) {
+            $conexion->close();
+            return false;
+        }
+        $lisUser= array();
+        $usuarios = $resultado->fetch_all();
+        foreach($usuarios as $u){
+            array_push($lisUser, obtener_usuario($u)); 
+        }
+        return $lisUser; 
+    }
+
     function insertar_user($user){
         $conexion = getConexion(); 
         $sql = "INSERT INTO `users`(`nombre`, `cedula`, `correo`, `telefono`, `direcion`, `username`, `password`, `tipo`) 
         VALUES ('$user->nombre','$user->cedula','$user->correo','$user->telefono',
         '$user->direcion','$user->username','$user->password','$user->tipo')"; 
+        var_dump ($sql); 
         $resultado = $conexion->query($sql); 
         if($conexion->connect_errno){
             $conexion->close();

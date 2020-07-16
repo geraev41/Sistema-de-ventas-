@@ -64,6 +64,23 @@
         return $productos_cate; 
     }
 
+    function mostrar_productos_en_carrito($id_carro){
+        $con = getConexion(); 
+        $sql ="SELECT * WHERE asoc_producto_carro id_carro = $id_carro";
+        $result = $con->query($sql);
+
+        if($con->connect_errno){
+            $con-close();
+            return false; 
+        }
+        $producto_car = array(); 
+        $car_pro  = $result->fetch_all(); 
+        foreach($car_pro as $pr){
+            array_push ($producto_car, get_producto($pr[2]));
+        }
+        return $car_pro; 
+    }
+
     function delete_producto($id){
         $con = getConexion(); 
         $sql ="DELETE FROM producto

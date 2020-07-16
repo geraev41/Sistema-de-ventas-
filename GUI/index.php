@@ -12,13 +12,7 @@
     <section class="section">
         <div>
         <?php 
-
-        require_once ('../Util/Util.php'); 
-        try{
             include ('login.php');     
-        }catch(Exception $e){
-            alert($e->getMessage()); 
-        }        
         ?>  
 
     </section>

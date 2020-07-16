@@ -14,7 +14,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrador</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css"/>
-    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script> 
     <link rel="stylesheet" href="../CSS/admin.css">
 
 </head>
@@ -41,7 +40,7 @@
                                     <a> $cat->nombre 
                                         <a href='producto?id=$cat->id&&message=add'><img src='../Imagenes/add.png'></a>
                                         <a ><img src='../Imagenes/edit.png'></a>
-                                        <a href='../logicaDatos/categoriaDatos?id=$cat->id'><img src='../Imagenes/delete2.png'></a>
+                                        <a onclick='if(confirm('Eliminar?')){}'><img src='../Imagenes/delete2.png'></a>
                                         ".list_productos($cat->listaProductos)."
                                     </a>
                                 </li>

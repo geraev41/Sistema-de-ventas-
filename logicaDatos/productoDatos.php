@@ -5,12 +5,6 @@
 
 
     if(isset($_GET['id'])){
-            $res=false;
-            echo "<script type='text/javascript'>
-               $res = confirm('Desea?');
-            </script>";
-            echo ($res); 
-
         //if(eliminar_producto($_GET['id'])){
           //  header('Location: /GUI/admin.php?status=Inicio sección&message=Se elimino con exitó un producto!');
         //} 
