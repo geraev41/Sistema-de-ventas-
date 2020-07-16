@@ -24,7 +24,7 @@
                 </div>
                 <div class="column" id="divRight">
 
-</div>
+                </div>
 
             </div>
         </div>
