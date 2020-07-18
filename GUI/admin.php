@@ -39,8 +39,8 @@
                                 <li >
                                     <a> $cat->nombre 
                                         <a href='producto?id=$cat->id&&message=add'><img src='../Imagenes/add.png'></a>
-                                        <a ><img src='../Imagenes/edit.png'></a>
-                                        <a onclick='if(confirm('Eliminar?')){}'><img src='../Imagenes/delete2.png'></a>
+                                        <a><img src='../Imagenes/edit.png'></a>
+                                        <a href='../logicaDatos/categoriaDatos.php?id=$cat->id'><img src='../Imagenes/delete2.png'></a>
                                         ".list_productos($cat->listaProductos)."
                                     </a>
                                 </li>
@@ -59,7 +59,7 @@
                                 <ul class =''> 
                                     <li>
                                         <a> $p->nombre<a/>
-                                        <a  href='producto?id=$p->id&&message=edit'><img src='../Imagenes/edit.png'></a>
+                                        <a href='../logicaDatos/productoDatos.php?id=$p->id&&message=edit'><img src='../Imagenes/edit.png'></a>
                                         <a href='../logicaDatos/productoDatos.php?id=$p->id'> <img src='../Imagenes/delete2.png'></a>
                                     </li>
                                 </ul>"; 

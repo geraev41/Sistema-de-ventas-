@@ -35,7 +35,6 @@
         $sql = "SELECT * FROM categoria"; 
         $result = $con->query($sql); 
 
-
         if($con->connect_errno){
             $con->close(); 
             return false; 

@@ -5,9 +5,9 @@
 
 
     if(isset($_GET['id'])){
-        //if(eliminar_producto($_GET['id'])){
-          //  header('Location: /GUI/admin.php?status=Inicio sección&message=Se elimino con exitó un producto!');
-        //} 
+        if(eliminar_producto($_GET['id'])){
+            header('Location: /GUI/admin.php?status=Inicio sección&message=Se elimino con exitó un producto!');
+        } 
     }   
 
     function eliminar_producto($id){
@@ -22,6 +22,10 @@
 
     function mostrar_producto($id){
         return get_producto($id); 
+    }
+
+    function productos_x_cat($id_categoria){
+        return mostrar_productos_x_categoria($id_categoria);
     }
 
     function editar_producto($p){

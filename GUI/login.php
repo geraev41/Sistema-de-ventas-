@@ -10,7 +10,7 @@ include_once ('../Entidades/User.php');
       if($userO->tipo=="ad"){
           header('Location: /GUI/admin.php?status=Inicio sección&message=Admin');
     }elseif($userO->tipo=="cl"){
-
+        header('Location: /GUI/principal.php?status=principal&message=Bienvenido');
     }else{
         header ('Location: /GUI/index.php?status=Inicio sección'); 
     }

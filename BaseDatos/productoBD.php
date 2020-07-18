@@ -64,21 +64,21 @@
         return $productos_cate; 
     }
 
-    function mostrar_productos_en_carrito($id_carro){
+    function mostrar_productos_en_carrito($id_producto){
         $con = getConexion(); 
-        $sql ="SELECT * WHERE asoc_producto_carro id_carro = $id_carro";
+        $sql ="SELECT * FROM `producto` WHERE id = $id_producto";
         $result = $con->query($sql);
-
         if($con->connect_errno){
             $con-close();
-            return false; 
+            return false;
         }
+
         $producto_car = array(); 
         $car_pro  = $result->fetch_all(); 
         foreach($car_pro as $pr){
-            array_push ($producto_car, get_producto($pr[2]));
+            array_push ($producto_car, cargar_producto($pr));
         }
-        return $car_pro; 
+        return $producto_car; 
     }
 
     function delete_producto($id){
