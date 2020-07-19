@@ -1,4 +1,10 @@
 <?php
+    session_start(); 
+    if(!$_SESSION || !$_SESSION['user']){
+        header ('Location: /GUI/index.php?status=Inicio'); 
+    }
+    unset($_SESSION['isFirst']);
+    unset($_SESSION['cantidad']);
     ob_start(); 
 ?>
 
@@ -20,11 +26,14 @@
             <br><br>
            <a href="#divProductos" class="button is-outlined is-small is-danger is-rounded">Productos</a> 
            <a href="#divCarrito" class="button is-outlined is-small is-danger is-rounded">Mi carrito</a> 
+            <input class="button is-outlined is-small is-danger is-rounded" type="submit" name="btnSalir" value="Cerrar Seción">
+           
         </div>
 
         <div id="divRight">
             <div id="divProductos">
-            <div class="field">
+           <br> 
+            <div class="field" style="margin-left:25%;">
                 <div class="control">
                     <div class="select is-info ">
                         <select name="select"  onchange="this.form.submit()">
@@ -43,7 +52,7 @@
                         </select>  
                     </div>
                 </div>
-            </div> <br><br>
+            </div> 
 
 
              <table class="table">
@@ -105,17 +114,20 @@
                 include_once ('../Util/Util.php');
                 include_once ('../logicaDatos/carroDatos.php'); 
                 include_once ('../Entidades/User.php'); 
-                    session_start(); 
                     $user = new User(); 
-                    $user = $_SESSION['user']; 
-
+                    $user =$_SESSION['user'];
+                    $user =unserialize($user);  
                     $listaCarro =  mostrar_productos_x_carro(intval($user->id));
+                    $listaCostos = array(); 
                        
                     if($listaCarro){
                         $txt =""; 
                     foreach($listaCarro as $c){
                         foreach($c->listaProductos as $p){
                             $img = base64_encode($p->imagen); 
+                            $cantidades = datos_cantidades($p->id, $user->id); 
+                            $costo = $cantidades[0][4]; 
+                            array_push($listaCostos, $costo); 
                             $txt.= "
                                 <tr>
                                     <td>$p->nombre</td>
@@ -124,8 +136,8 @@
                                     <td>$p->stock</td>
                                     <td>$p->precio</td>
                                     <td> $c->cantidad</td>
-                                    <td>Costo</td>
-                                    <td><a>Descartar</a></td>
+                                    <td> ₡$costo</td>
+                                    <td><a href='../logicaDatos/carroDatos.php?id_car=$c->id&&id_pro=$p->id'>Descartar</a></td>
                                     <td><a href='cantidad_requerida.php?id_producto=$p->id'>Hacer cambios</a></td>
                                 </tr>
                             ";
@@ -136,7 +148,13 @@
                 ?>
                 </tbody>
              </table><br> 
-            <label>Total a pagar <?php echo("2000");?></label>
+             <?php
+                $total = 0;
+                foreach($listaCostos as $costo){
+                    $total+= $costo; 
+                }
+             ?>
+            <label>Total a pagar <?php echo("₡$total")?></label>
              <input style="left:4%;" name="btnPagar" class="button is-outlined is-small is-danger " value="Pagar" type="submit">
                 </div>
         </div>
@@ -149,8 +167,10 @@
 <?php
     include_once ('../Util/Util.php'); 
     include_once ('../logicaDatos/carroDatos.php');
-       
-
-      // header('Location: /logicaDatos/carroDatos.php?cant='.$can.'&&id_pr='.$id);
+    
+    if(isset($_POST['btnSalir'])){
+        include_once ('../logicaDatos/logout.php'); 
+        destruir_session(); 
+    }
 ?>
 

@@ -47,7 +47,8 @@
         $userBD = existe_user($user, true);
         if($userBD){
             session_start(); 
-            $_SESSION['user'] = $userBD; 
+            $_SESSION['user'] = serialize($userBD); 
+            unserialize($userBD); 
             if($userBD->tipo == 'ad'){
                 header('Location: /GUI/admin.php?status=Inicio sección&message=Admin');
             }elseif($userBD->tipo=='cl'){

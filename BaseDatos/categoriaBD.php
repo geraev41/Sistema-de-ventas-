@@ -48,6 +48,24 @@
         return $get_categ; 
     }
 
+    function mostrar_categoria($id_categoria){
+        include_once ('conexion.php');
+        $con = getConexion(); 
+        $sql = "SELECT * FROM categoria WHERE id = $id_categoria"; 
+        $result = $con->query($sql); 
+
+        if($con->connect_errno){
+            $con->close(); 
+            return false; 
+        }
+        $get_categ = array(); 
+        $categorias = $result->fetch_all();
+        foreach($categorias as $c){
+            array_push($get_categ, obtener_categoria($c)); 
+        }  
+        $con->close(); 
+        return $get_categ; 
+    }
 
     function obtener_categoria($catResult){
         $listPro = mostrar_productos_x_categoria($catResult[0]); 

@@ -27,8 +27,12 @@
     }
 
     function eliminar_categoria($id){
-        if(delete_categoria($id)){
-            header('Location: /GUI/admin.php?status=Admin&message=Se eliminó la categoría con exitó');
+        if(mostrar_categoria($id)[0]->listaProductos==NULL){
+           if(delete_categoria($id)){
+              header('Location: /GUI/admin.php?status=Admin&message=eliminó');
+            }
+        }else{
+            header('Location: /GUI/admin.php?status=Admin&message=error prod');
         }
     }
 

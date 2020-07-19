@@ -1,32 +1,58 @@
 
-#idUl li a{
-    display: inline;
-}
-
-nav li{
-    display: inline-block; 
-    height:30px;
-    padding-top: 15px;
+#divLeft{
+    float: left;
+    width: 20%;
+    height: 100vh;   
     position: relative;
+    background-color:#333;
+    outline:1px solid  #2a2a2a;
+}
+#divRight{
+    display: flex;
+    float: left;
+    width: 35%;
+    height: 12vh; 
+    margin-left: 3%;
 }
 
-nav li ul{
-    display:none;
-    position: absolute;;
-    top:0px;
-    left:120px;
+
+
+#container{
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
 }
-nav li:hover ul{
-    display:block;
-    position: static;
-    top: 0px; 
+#divProductos{
+    display: none;
+   opacity: 0.8;
 }
 
-nav ul ul li{
-    float:none;
-    top: 0px; 
-}
-nav ul ul a{
-    line-height: 5%;
+#divProductos:target{
+    display: block;
+   opacity: 1;
 }
 
+#divCategorias{
+    display: none;
+    opacity: 0.8;
+}
+
+
+#divCategorias:target{
+    display: block; 
+    opacity: 1;
+}
+
+#divClientes{
+    display: none;
+    opacity: 0.8;
+}
+
+
+#divClientes:target{
+    display: block; 
+    opacity: 1;
+}
+#idBtn{
+    margin-left: 30%;
+}

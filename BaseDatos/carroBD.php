@@ -59,13 +59,36 @@
         return $carritosDevolver; 
     }
     
-    function eliminar_producto_d_carro($id_producto){
+    function cargar_cantidades_d_carro($id_producto, $id_carro){
         $con = getConexion(); 
-        $sql = "DELETE asoc_producto_carro WHERE id_producto = $id_producto";
+        $sql = "SELECT * FROM asoc_producto_carro WHERE id_carro = $id_carro AND id_producto = $id_producto";
         $result = $con->query($sql);
         if($con->connect_errno){
             $con->close(); 
             return fase; 
+        }
+        return $result->fetch_all();
+    }
+
+    function editar_cantidades($carro){
+        $con = getConexion(); 
+        $sql ="UPDATE asoc_producto_carro  SET cantidad = '$carro->cantidad', valor = '$carro->total' 
+        WHERE id_carro= $carro->id AND id_producto = $carro->id_producto"; 
+         $result = $con->query($sql);
+         if($con->connect_errno){
+             $con->close(); 
+             return false; 
+         }
+         return $result;
+    }
+
+    function eliminar_producto_d_carro($id_carro, $id_producto){
+        $con = getConexion(); 
+        $sql = "DELETE FROM asoc_producto_carro WHERE id_carro = $id_carro AND id_producto = $id_producto";
+        $result = $con->query($sql);
+        if($con->connect_errno){
+            $con->close(); 
+            return false; 
         }
         return $result;
     }

@@ -2,16 +2,16 @@
 
 ob_start(); 
     session_start();
-    if(isset($_GET['id'])){
+    if(isset($_GET['id_receive'])){
         $mesa = $_GET['message'];
         switch ($mesa) {
             case 'add':
                 unset($_SESSION['id_producto']); 
-            $_SESSION['id_categoria'] =$_GET['id'];
+            $_SESSION['id_categoria'] =$_GET['id_receive'];
                 # code...
                 break;
             case 'edit':
-            $_SESSION['id_producto'] =$_GET['id'];
+            $_SESSION['id_producto'] =$_GET['id_receive'];
             default:
                 # code...
                 break;
@@ -52,7 +52,6 @@ ob_start();
                            $image = base64_encode(trim(isset($p->imagen)?($p->imagen):"","")); 
                            $stock = trim(isset($p->stock)?($p->stock):"",""); 
                            $precio = trim(isset($p->precio)?($p->precio):"","");
-                           $cantidad = trim(isset($p->cantidad)?($p->cantidad):"",""); 
                            
 
 
@@ -64,8 +63,7 @@ ob_start();
                         <br><br>
                         <input class="" placeholder="Stock" name ="txtStock" type="text" value="<?php echo ("$stock")?>"><br><br>
                         <input class="" placeholder="Precio" name ="txtPrecio" type="text" value="<?php echo ("$precio")?>"><br><br>
-                        <input class="" placeholder="Cantidad" name ="txtCantidad" type="text" value="<?php echo ("$cantidad")?>"><br><br>
-                        <input class="" value="Cancelar" name="btnVolver" type="submit">
+                        <input class="" value="Regresar" name="btnVolver" type="submit">
                         <input class="" value="<?php echo("$btnValue")?>" name="<?php echo("$btnName")?>" type="submit">
                     </div>
                 </div>
@@ -78,7 +76,7 @@ ob_start();
     include_once ('../Util/Util.php');
 
     if(isset($_POST['btnVolver'])){
-
+        header('Location: /GUI/admin.php?status=Inicio sección&message=Admin');
     }
 
     if(isset($_POST['btnAddProducto'])){
@@ -98,7 +96,6 @@ ob_start();
         $p->imagen =  $_FILES['Image']['tmp_name']; 
         $p->stock = $_POST['txtStock'];
         $p->precio =$_POST['txtPrecio'];
-        $p->cantidad= $_POST['txtCantidad'];
         if(!$isEdit){
             validar_datos($p);
         }else{

@@ -6,9 +6,12 @@
 
     if(isset($_GET['id'])){
         if(eliminar_producto($_GET['id'])){
-            header('Location: /GUI/admin.php?status=Inicio sección&message=Se elimino con exitó un producto!');
+          header('Location: /GUI/admin.php?status=Inicio sección&message=Se elimino con exitó un producto!');
         } 
     }   
+    function hello(){
+        return "Hola mundo"; 
+    }
 
     function eliminar_producto($id){
        return delete_producto($id);
@@ -58,10 +61,6 @@
         if(empty($p->precio) || ($p->precio)<=0){
             throw new Exception("El precio debe ser mayor a 0 y no debe estar vacía"); 
         }
-
-        if(empty($p->cantidad) || ($p->cantidad)<=0){
-            throw new Exception("La cantidad deber ser mayor a 0 y no debe estar vacía"); 
-        }
-
+     
     }
 ?>

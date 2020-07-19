@@ -4,8 +4,8 @@
     include_once ('../Entidades/Producto.php');
     function insertar_producto($p){
         $con = getConexion(); 
-        $sql ="INSERT INTO producto(id_categoria, nombre, descripcion, imagen, stock, precio, cantidad) 
-        VALUES ('$p->id_categoria','$p->nombre','$p->descripcion','$p->imagen','$p->stock','$p->precio','$p->cantidad')";
+        $sql ="INSERT INTO producto(id_categoria, nombre, descripcion, imagen, stock, precio) 
+        VALUES ('$p->id_categoria','$p->nombre','$p->descripcion','$p->imagen','$p->stock','$p->precio')";
 
         $result = $con->query($sql);
         if($con->connect_errno){
@@ -19,7 +19,7 @@
     function modificar_producto($p){
         $con = getConexion(); 
         $sql ="UPDATE `producto` SET id_categoria='$p->id_categoria', nombre='$p->nombre', descripcion='$p->descripcion', 
-        imagen= '$p->imagen', stock='$p->stock', precio='$p->precio', cantidad= '$p->cantidad' WHERE id =$p->id"; 
+        imagen= '$p->imagen', stock='$p->stock', precio='$p->precio' WHERE id =$p->id"; 
         $result = $con->query($sql);
         if($con->connect_errno){
             $con->close();
@@ -103,7 +103,6 @@
         $p->imagen= $resultP[4]; 
         $p->stock = $resultP[5]; 
         $p->precio = $resultP[6]; 
-        $p->cantidad = $resultP[7]; 
         return $p; 
     }
 
