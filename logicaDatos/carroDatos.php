@@ -34,7 +34,7 @@
              return; 
 
         }
-        $carro->id= intval(crear_carrito($carro)[0]);
+        $carro->id= intval(crear_carrito($carro)[0]->id);
         insertar_producto_a_carrito($carro); 
         header('Location: /GUI/principal.php?status=principal&message=Producto agregado');
         return; 

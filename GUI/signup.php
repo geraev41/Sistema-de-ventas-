@@ -60,7 +60,7 @@
         $user->nombre = $_POST['txtNombre'];
         $user->cedula = $_POST['txtCedula'];
         $user->correo = $_POST['txtCorreo']; 
-        $user->telefono = $_POST['txtCorreo']; 
+        $user->telefono = $_POST['txtTelefono']; 
         $user->direcion = $_POST['txtDirecion']; 
         $user->username=$_POST['txtUsername'];
         $user->password = $_POST['txtPass']; 

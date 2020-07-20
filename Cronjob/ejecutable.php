@@ -22,7 +22,12 @@
             $destino = "gera2espi1818@gmail.com";
             $asunto = "Información de stocks";
             $msj = "Estos productos se encuentra con una cantidad baja a la consultada\n\n ".$txt;
-            mail($destino, $asunto, $msj);
+            $mail =mail($destino, $asunto, $msj);
+            if($mail){
+                echo "Se envío un correo con exitó";
+            }else{
+                echo "Surgio error";
+            }
         }
 
     // xampp\php\php.exe C:\web1\sistemadeventas\Cronjob\ejecutable.php 2

@@ -5,9 +5,8 @@
             case 'edit':
                 $_SESSION['id_categoria_editar'] = intval($_GET['id_editar_cate']); 
                 break;
-            
             default:
-                # code...
+                unset($_SESSION['id_categoria_editar']);
                 break;
         }
     }
@@ -73,6 +72,7 @@
         $cat->id = $_SESSION['id_categoria_editar']; 
         $cat->nombre = trim($_POST['txtCategoria']); 
         if(editar_categ($cat)){
+            unset($_SESSION['id_categoria_editar']);
             header('Location: /GUI/admin.php?status=Inicio sección&message=Se edito con exitó una categoria!');
         }else{
             alert("No se puede editar esta categoria, es probable que ya exista una con este nombre. Utilice una nueva");
