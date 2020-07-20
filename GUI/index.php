@@ -13,6 +13,6 @@
         <?php 
             include ('login.php');     
         ?>  
-
+    </section>  
 </body>
 </html>

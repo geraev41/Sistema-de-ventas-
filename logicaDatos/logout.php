@@ -1,8 +1,6 @@
 <?php
-ob_start(); 
-function destruir_session(){
+  include_once ('../Util/Util.php'); 
   session_start();
   session_destroy();
   header('Location: /GUI/index.php');
-}
 ?>

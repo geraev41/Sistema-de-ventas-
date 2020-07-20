@@ -1,24 +1,8 @@
 
 <?php
-
-include_once ('../Entidades/User.php'); 
-
     session_start(); 
     session_destroy();
-    if($_SESSION && $_SESSION['user']){
-        $userO = new User();
-        $userO = $_SESSION['user']; 
-        if($userO->tipo=="ad"){
-            header('Location: /GUI/admin.php?status=Inicio sección&message=Admin');
-        }elseif($userO->tipo=="cl"){
-            //header('Location: /GUI/principal.php?status=principal&message=Bienvenido');
-        }else{
-            header ('Location: /GUI/index.php?status=Inicio sección'); 
-        }
-    }
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +19,7 @@ include_once ('../Entidades/User.php');
                 <div class="columns">
                    <div class="column is-half
                         is-offset-one-quarter">
-                        <p  style="margin-left: 35%;">
+                        <p style="margin-left: 35%;">
                             <img class="is-rounded"src="/Imagenes/icon_user.png"  width="140px">
                         </p>
                         <div class="control has-icons-left">
@@ -51,11 +35,10 @@ include_once ('../Entidades/User.php');
                                 <i lass="fas fa-envelope"></i>
                             </span>  
                         </div>
-                        <input class="button is-outlined is-small is-success is-rounded" value="Salir" name="btnSalir" style="margin-left: 30%;" type="submit">
-                        <input class="button is-outlined is-small is-danger is-rounded" value="Iniciar Sección" name="btnOk" style="margin-left: 50%;" type="submit">
-                        <input class="button is-outlined is-small is-danger is-rounded" value="Crear Una cuenta" name="btnCrearUser" style="margin-left: 50%;" type="submit">
-
-
+                       <div style="margin-left: 30%;"> 
+                        <input class="button is-outlined is-small is-success " value="Crear Una cuenta" name="btnCrearUser" type="submit">
+                        <input class="button is-outlined is-small is-danger " value="Iniciar Sección" name="btnOk" type="submit">
+                      </div> 
                    </div>
 
                 </div>

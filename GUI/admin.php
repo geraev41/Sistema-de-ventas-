@@ -34,11 +34,12 @@
             <div id="container">    
                 <div id="divLeft">
                     <br><br>
-                    <a href="#divCategorias" id="idBtn" class="button is-outlined is-small is-danger is-rounded">Categorias</a> <br><br>
-                    <a href="#divProductos" id="idBtn" class="button is-outlined is-small is-danger is-rounded">Productos</a><br><br>
-                    <a href="#divClientes" id="idBtn" class="button is-outlined is-small is-danger is-rounded">Clientes</a><br><br>
-
-                    <input id="idBtn" class="button is-outlined is-small is-danger is-rounded" type="submit" name="btnSalir" value="Cerrar Seción">
+                    <ul class="menu-list"> 
+                    <li><a id="aList" href="#divCategorias">Categorias</a> </li>
+                    <li><a id="aList" href="#divProductos" >Productos</a></li>
+                    <li><a id="aList" href="#divClientes" >Clientes</a></li>
+                    <ul>
+                    <a href ="../logicaDatos/logout.php"id="idBtn" class="button is-outlined is-small is-danger">Cerrar Sección<a>
                 </div>
 
                 <div id="divRight">
@@ -192,9 +193,10 @@
 </html>
 
 <?php
-    
     if(isset($_POST['btnSalir'])){
         include_once ('../logicaDatos/logout.php'); 
+        include_once ('../Util/Util.php'); 
+
         destruir_session(); 
     }
 

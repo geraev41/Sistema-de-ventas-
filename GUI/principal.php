@@ -24,8 +24,10 @@
     <div id="container">   
         <div id="divLeft">
             <br><br>
-           <a href="#divProductos" class="button is-outlined is-small is-danger is-rounded">Productos</a> 
-           <a href="#divCarrito" class="button is-outlined is-small is-danger is-rounded">Mi carrito</a> 
+           <a href="#divProductos" class="button is-outlined is-small is-danger is-rounded">Productos</a><br> 
+           <a href="#divCarrito" class="button is-outlined is-small is-danger is-rounded">Mi carrito</a> <br>
+           <a href="#divCompras" class="button is-outlined is-small is-danger is-rounded">Mis compras</a> <br>
+
             <input class="button is-outlined is-small is-danger is-rounded" type="submit" name="btnSalir" value="Cerrar Seción">
            
         </div>
@@ -155,8 +157,12 @@
                 }
              ?>
             <label>Total a pagar <?php echo("₡$total")?></label>
-             <input style="left:4%;" name="btnPagar" class="button is-outlined is-small is-danger " value="Pagar" type="submit">
+            <input style="left:4%;" name="btnPagar" class="button is-outlined is-small is-danger " value="Pagar" type="submit">
                 </div>
+        </div>
+        <div id="divCompras">
+
+        
         </div>
     </div>
     </form> 
@@ -166,11 +172,15 @@
 
 <?php
     include_once ('../Util/Util.php'); 
-    include_once ('../logicaDatos/carroDatos.php');
     
     if(isset($_POST['btnSalir'])){
         include_once ('../logicaDatos/logout.php'); 
         destruir_session(); 
+    }
+    if(isset($_POST['btnPagar'])){
+       // include_once ('../logicaDatos/compraDatos.php');
+       $id_carro = $listaCarro[0]->id; 
+     //   generar_compra($id_carro, $listaCarro[0]->listaProductos,$user,$cantidades);
     }
 ?>
 

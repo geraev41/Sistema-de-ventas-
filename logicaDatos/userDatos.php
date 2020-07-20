@@ -4,8 +4,6 @@
     include_once ('../Util/Util.php'); 
     require_once ('../Entidades/User.php');
     require_once ('../BaseDatos/UserBD.php'); 
-    include ('logout.php'); 
-    
 
     controlar_action(); 
 

@@ -62,9 +62,7 @@
         $cat = new Categoria();
         $cat->nombre = trim($_POST['txtCategoria']); 
         if(guardar_categoria($cat)){
-            echo ("Se guardo correctamente"); 
-
-            //header('Location: /GUI/admin.php?status=Inicio sección&message=Se guardo con exitó una categoria!');
+            header('Location: /GUI/admin.php?status=Inicio sección&message=Se guardo con exitó una categoria!');
         }else{
             alert("No se puede guardar esta categoria, es probable que ya exista una con este nombre. Guardé una nueva");
         }
@@ -75,8 +73,7 @@
         $cat->id = $_SESSION['id_categoria_editar']; 
         $cat->nombre = trim($_POST['txtCategoria']); 
         if(editar_categ($cat)){
-            echo ("Se edito correctamente"); 
-           // header('Location: /GUI/admin.php?status=Inicio sección&message=Se edito con exitó una categoria!');
+            header('Location: /GUI/admin.php?status=Inicio sección&message=Se edito con exitó una categoria!');
         }else{
             alert("No se puede editar esta categoria, es probable que ya exista una con este nombre. Utilice una nueva");
         }

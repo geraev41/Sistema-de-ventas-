@@ -11,8 +11,12 @@
             $con->close(); 
             return false; 
         }
-        $a  = $result ? $result->fetch_all():false; 
-        return $a;  
+      //  $a  = $result ? $result->fetch_all():false; 
+       // return $a;  
+       $carr = $result->fetch_all();
+       foreach($carr as $c){
+            return cargar_carro_buscado($c); 
+       }
     }
 
     function crear_carrito($carro){
@@ -31,8 +35,8 @@
         $con = getConexion(); 
         $carro->id = intval($carro->id);
         $carro->id_producto = intval($carro->id_producto);
-        $sql = "INSERT INTO asoc_producto_carro(id_carro, id_producto, cantidad) 
-        VALUES ('$carro->id','$carro->id_producto','$carro->cantidad')";
+        $sql = "INSERT INTO asoc_producto_carro(id_carro, id_producto, cantidad, valor) 
+        VALUES ('$carro->id','$carro->id_producto','$carro->cantidad','$carro->total')";
 
         $result = $con->query($sql);
         if($con->connect_errno){
@@ -43,7 +47,7 @@
     }
 
     function mostrar_productos_carrito($id_carro){
-        $con = getConexion(); 
+        $con = getConexion();
         $sql = "SELECT * FROM asoc_producto_carro WHERE id_carro = $id_carro"; 
         $result = $con->query($sql); 
         if($con->connect_errno){
@@ -99,6 +103,13 @@
         $c->id = $carResult[1]; 
         $c->cantidad= $carResult[3];
         $c->listaProductos = $listPro?$listPro:NULL; 
+        return $c; 
+    }
+
+    function cargar_carro_buscado($carResult){
+        $c = new Carro(); 
+        $c->id = $carResult[0]; 
+        $c->id_usuario= $carResult[1];
         return $c; 
         
     }

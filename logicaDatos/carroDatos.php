@@ -3,6 +3,8 @@
     include_once ('../Entidades/Carro.php'); 
     include_once ('../Entidades/User.php'); 
     include_once ('../BaseDatos/carroBD.php');
+    include_once ('../BaseDatos/productoBD.php');
+    include_once ('../Util/Util.php'); 
     
     if(isset($_GET['id_car']) && isset($_GET['id_pro'])){
         $id_carro = intval($_GET['id_car']);
@@ -23,8 +25,10 @@
     function guardar_producto_en_carro($carro){
         $carEncontrado = buscar_carrito($carro->id_usuario);
         $carro->cantidad = 1; 
+        $p = get_producto($carro->id_producto);
+        $carro->total = $carro->cantidad*$p->precio;
         if($carEncontrado){
-            $carro->id = $carEncontrado[0];
+            $carro->id = $carEncontrado->id;
              insertar_producto_a_carrito($carro);
              header('Location: /GUI/principal.php?status=principal&message=Producto agregado');
              return; 
@@ -42,7 +46,7 @@
         if(!$carEncontrado){
             return false; 
         }
-        return mostrar_productos_carrito(intval($carEncontrado[0])); 
+        return mostrar_productos_carrito(intval($carEncontrado->id)); 
     }
 
    function datos_cantidades($id_producto, $id_usuario){
@@ -50,7 +54,7 @@
         if(!$carEncontrado){
              return false; 
         }
-        return cargar_cantidades_d_carro($id_producto, intval($carEncontrado[0]));
+        return cargar_cantidades_d_carro($id_producto, intval($carEncontrado->id));
    }
 
    function modificar_cantidades($carro){
@@ -58,7 +62,7 @@
         if(!$carEncontrado){
             return false; 
         }
-        $carro->id = intval($carEncontrado[0]); 
+        $carro->id = intval($carEncontrado->id); 
         return editar_cantidades($carro); 
    }
 

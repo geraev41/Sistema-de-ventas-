@@ -32,7 +32,10 @@
                              <input REQUIRED class="input is-primary" type="text" placeholder="Nombre de usuario"  name="txtUsername"><br><br>
                              <input REQUIRED class="input is-primary" type="password" placeholder="Contraseña"  name="txtPass"><br><br>
                              <input REQUIRED class="input is-primary" type="password" placeholder="Confirmar Contraseña"  name="txtRePass"><br><br>
-                              <input REQUIRED class="button is-small is-danger is-rounded" value="Guardar" name="btnGuardar" style="margin-left: 50%;" type="submit">
+                            <div style="margin-left: 38%">  
+                                <a href="index.php?status=Inicio sección" class="button is-small is-success">Regresar</a>
+                                <input REQUIRED class="button is-small is-danger " value="Guardar" name="btnGuardar" type="submit">
+                            </div> 
                         </div>
                     </div>
                 </div>
