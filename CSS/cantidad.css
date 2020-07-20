@@ -7,3 +7,14 @@
     border-radius: 50px;
 }
 
+input{
+    margin-top: 3vh;
+}
+
+#idMain{
+    background-color:honeydew;
+    height: 50vh;
+    margin-top: 10%;
+    padding-left: 5%;
+}
+

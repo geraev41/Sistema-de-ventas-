@@ -4,15 +4,18 @@
     include_once ('productoBD.php'); 
 
     function insertar_categoria($categoria){
-        $con = getConexion(); 
-        $sql  = "INSERT INTO categoria(nombre) VALUES ('$categoria->nombre')"; 
-        $result = $con->query($sql);
-        if($con->connect_errno){
+        if(categoria_x_nombre($categoria, true)){
+            $con = getConexion(); 
+            $sql  = "INSERT INTO categoria(nombre) VALUES ('$categoria->nombre')"; 
+            $result = $con->query($sql);
+            if($con->connect_errno){
+                $con->close(); 
+                return false; 
+            }
             $con->close(); 
-            return false; 
+            return $result; 
         }
-        $con->close(); 
-        return $result; 
+        return false;
     }
 
     
@@ -48,10 +51,45 @@
         return $get_categ; 
     }
 
+    function categoria_x_nombre($categoria, $isSave){
+        $con = getConexion(); 
+        $sqlNombre = "SELECT * FROM categoria WHERE nombre = '$categoria->nombre'"; 
+        $sqlIdNombre = "SELECT * FROM categoria WHERE id != '$categoria->id' AND nombre = '$categoria->nombre'"; 
+        $sql = $isSave ? $sqlNombre:$sqlIdNombre; 
+        $result = $con->query($sql);
+        if($con->connect_errno){
+            $con->close(); 
+            return false; 
+        }
+        $categorias = $result->fetch_all();
+        if(count($categorias)>0){ 
+            if(strtolower($categorias[0][1])===strtolower($categoria->nombre)){
+                return false; 
+            }
+        }
+        return true; 
+    }
+
+    function editar_categoria($categoria){
+        if(categoria_x_nombre($categoria, false)){
+            include_once ('conexion.php');
+            $con = getConexion(); 
+            $sql = "UPDATE categoria SET nombre = '$categoria->nombre' WHERE id = '$categoria->id'"; 
+            $result = $con->query($sql); 
+
+            if($con->connect_errno){
+                $con->close(); 
+                return false; 
+            }
+            return $result; 
+         }
+    }
+
     function mostrar_categoria($id_categoria){
         include_once ('conexion.php');
         $con = getConexion(); 
         $sql = "SELECT * FROM categoria WHERE id = $id_categoria"; 
+
         $result = $con->query($sql); 
 
         if($con->connect_errno){

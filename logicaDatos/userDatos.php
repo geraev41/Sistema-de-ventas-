@@ -66,6 +66,8 @@
         return false; 
     }
 
-
+    function mostrar_usuarios(){
+        return obtener_clientes(); 
+    }
    
 ?>

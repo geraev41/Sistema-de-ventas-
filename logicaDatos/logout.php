@@ -1,4 +1,5 @@
 <?php
+ob_start(); 
 function destruir_session(){
   session_start();
   session_destroy();

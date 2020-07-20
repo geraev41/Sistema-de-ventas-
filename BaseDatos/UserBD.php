@@ -25,7 +25,8 @@
 
     function obtener_clientes(){
         $conexion = getConexion(); 
-        $sql = "SELECT * FROM users"; 
+        $sql = "SELECT * FROM users WHERE tipo = 'cl'"; 
+        $resultado = $conexion->query($sql);
 
         if ($conexion->connect_errno) {
             $conexion->close();

@@ -60,7 +60,7 @@
                                             <tr>
                                                 <td>$cat->nombre</td>
                                                 <td><a href='producto.php?id_receive=$cat->id&&message=add'>Agregar Producto</a></td>
-                                                <td><a>Editar</a></td>
+                                                <td><a href='categoria.php?id_editar_cate=$cat->id&&message=edit'>Editar</a></td>
                                                 <td><input  class='button is-outlined is-small is-danger is-rounded' onclick='eliminarCat($cat->id);'type='button' value='Eliminar'></td>
                                             </tr>
                                             "; 
@@ -71,7 +71,7 @@
                                 ?>
                             </tbody>                          
                         </table>     
-                    <a href="#" style="margin-left:5%;"  class="button is-outlined is-small is-danger ">Agregar Nueva Categoria</a><br><br>
+                    <a href="categoria.php" style="margin-left:5%;" name="btnCategoriaNew" class="button is-outlined is-small is-danger ">Agregar Nueva Categoria</a><br><br>
                     </div>
                     <div id="divProductos">
                         <br>
@@ -138,6 +138,38 @@
                             </tbody>
                         </table> 
                     </div>
+                    <div id="divClientes">
+                        <table class ="table">
+                            <tr> 
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Teléfono</th>
+                                <th>Dirección</th>
+                            </tr>
+                            <tbody>
+                                <?php
+                                    include_once ('../logicaDatos/userDatos.php');
+                                    $clientes = mostrar_usuarios(); 
+                                    if($clientes){
+                                        foreach($clientes as $c){
+                                            echo"
+                                                <tr>
+                                                    <td>$c->nombre</td>
+                                                    <td>$c->correo</td>
+                                                    <td>$c->telefono</td>
+                                                    <td>$c->direcion</td>
+                                                </tr>
+                                            ";
+                                        }
+                                        $cant = count($clientes);
+                                        echo"<br> Total de clientes registrados $cant";
+                                    }else{
+                                        echo("Sin clientes registrados");
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
 
                 </div>
             </div>
@@ -165,5 +197,7 @@
         include_once ('../logicaDatos/logout.php'); 
         destruir_session(); 
     }
+
+    
 ?>
 

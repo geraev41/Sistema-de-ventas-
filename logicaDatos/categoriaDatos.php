@@ -10,20 +10,23 @@
             eliminar_categoria($_GET['id']); 
         }
     }
+
+    function editar_categ($categoria){
+        return editar_categoria($categoria); 
+    }
         
-    function guardar_categoria(){
-        //atrapar datos 
-        $categoria = new Categoria(); 
-        $categoria->nombre ="Productos domesticos"; 
-        if(insertar_categoria($categoria)){
-            header('Location: /GUI/admin.php?status=Inicio sección&message=Se guardo con exitó una categoría!');
-        }
+    function guardar_categoria($categoria){
+        return insertar_categoria($categoria); 
     }
 
     function mostrar_categorias(){
         if(get_categorias()){
             return get_categorias(); 
         }
+    }
+
+    function categoria_x_id($id){
+        return mostrar_categoria($id);
     }
 
     function eliminar_categoria($id){
