@@ -2,6 +2,11 @@
 
     include_once ('conexion.php');
     include_once ('../Entidades/Producto.php');
+
+    /**
+     * $p producto recibido para guardar en la base datos
+     * Va a la base datos y guarda un producto, y se la asocia a la categoria
+     */
     function insertar_producto($p){
         $con = getConexion(); 
         $sql ="INSERT INTO producto(id_categoria, nombre, descripcion, imagen, stock, precio) 
@@ -15,7 +20,10 @@
         $con->close(); 
         return $result; 
     }
-
+    /**
+     * $p producto editado, recibido para cambiar en la base datos
+     * Va a la base datos y edita un producto
+     */
     function modificar_producto($p){
         $con = getConexion(); 
         $sql ="UPDATE `producto` SET id_categoria='$p->id_categoria', nombre='$p->nombre', descripcion='$p->descripcion', 
@@ -29,13 +37,15 @@
         return $result; 
     }
 
+    /**
+     * $id id del producto
+     * Obtiene un producto en especifico por id
+     */
     function get_producto($id){
         $con = getConexion(); 
         $sql ="SELECT * FROM `producto`
          WHERE id = $id";
-         //'id', 'id_categoria', 'nombre', 'descripcion', 'imagen', 'stock', 'precio', 'cantidad'
         $result = $con->query($sql);
-
         if($con->connect_errno){
             $con-close();
             return false; 
@@ -46,12 +56,14 @@
         }
     }
 
-
+    /**
+     * $id_categoria el id de la categoria a la que esta asociado
+     * obtiene todos los productos de la categoria padre a la que pertenece
+     */
     function mostrar_productos_x_categoria($id_categoria){
         $con = getConexion(); 
         $sql ="SELECT * FROM `producto` WHERE id_categoria = $id_categoria";
         $result = $con->query($sql);
-        //'id', 'id_categoria', 'nombre', 'descripcion', 'imagen', 'stock', 'precio', 'cantidad' 
         if($con->connect_errno){
             $con-close();
             return false; 
@@ -63,7 +75,10 @@
         }
         return $productos_cate; 
     }
-
+    /**
+     * $id_producto el id del producto que esta asociado al carro
+     * obtiene todos los productos que estan en el carrito
+     */
     function mostrar_productos_en_carrito($id_producto){
         $con = getConexion(); 
         $sql ="SELECT * FROM `producto` WHERE id = $id_producto";
@@ -71,7 +86,7 @@
         if($con->connect_errno){
             $con-close();
             return false;
-        }
+    }
 
         $producto_car = array(); 
         $car_pro  = $result->fetch_all(); 
@@ -81,6 +96,10 @@
         return $producto_car; 
     }
 
+    /**
+     * $id id del producto
+     * elimina un producto por id
+     */
     function delete_producto($id){
         $con = getConexion(); 
         $sql ="DELETE FROM producto
@@ -93,7 +112,10 @@
         }
         return $result; 
     }
-
+    /**
+     * $resultP array de productos obtenidos en la base datos
+     * Convierte los datos a un objeto de tipo Producto
+     */
     function cargar_producto($resultP){
         $p = new Producto(); 
         $p->id = $resultP[0]; 

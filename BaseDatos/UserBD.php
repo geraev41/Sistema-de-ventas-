@@ -3,6 +3,11 @@
    require_once ('conexion.php'); 
    require_once ('../Entidades/User.php'); 
    
+   /**
+    * $user usuario a consultar
+    * $islogin variable si es true es para login, si es false para sigunp
+    * Busca todos los clientes en la base datos, que han sido registrados
+    */
    function existe_user($user, $islogin){
         $conexion = getConexion(); 
         $sqlL = "SELECT * FROM users WHERE username = '$user->username' AND password = '$user->password'";
@@ -22,7 +27,9 @@
         }
     }
     
-
+    /**
+    * Obtiene todos los usuarios de la base datos, por clientes
+    */
     function obtener_clientes(){
         $conexion = getConexion(); 
         $sql = "SELECT * FROM users WHERE tipo = 'cl'"; 
@@ -38,7 +45,10 @@
         }
         return $lisUser; 
     }
-
+    /**
+     * $user usuario a guardar
+     * Insertar un usuario en la base datos
+     */
     function insertar_user($user){
         $conexion = getConexion(); 
         $sql = "INSERT INTO `users`(`nombre`, `cedula`, `correo`, `telefono`, `direcion`, `username`, `password`, `tipo`) 
@@ -55,6 +65,10 @@
        
     }
 
+    /**
+     * $userResult array de usuario obtenido en la base datos
+     * Obtiene los datos, y los convierte a objeto tipo usuario
+     */
     function obtener_usuario($userResult){
         $u = new user(); 
         $u->id = $userResult[0]; 

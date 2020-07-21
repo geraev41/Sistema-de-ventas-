@@ -1,4 +1,7 @@
 <?php
+    /**
+     * Devuelve la conexion obtenida a la base datos
+     */
     function getConexion(){
         $servidor ="localhost";
         $usuario = "root";
