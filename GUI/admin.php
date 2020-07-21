@@ -1,8 +1,18 @@
 <?php
+    include_once ('../Entidades/User.php'); 
     session_start(); 
-    if(!$_SESSION && !$_SESSION['user']) {
-        header ('Location: /GUI/index.php?status=Inicio'); 
-    }   
+    //var_dump("SECCION ADMIN ".$_SESSION['user']);
+    if($_SESSION && $_SESSION['user']) {
+        $user = new User();
+        $user = unserialize($_SESSION['user']);
+        if($user->tipo != "ad"){
+            header('Location: /GUI/index.php?status=Inicio');
+        }
+    }else{
+        header('Location: /GUI/index.php?status=Inicio');
+    } 
+    
+
     include_once ('../Util/Util.php');
     if(isset($_GET['message'])){ 
         switch ($_GET['message']) {
@@ -34,6 +44,7 @@
             <div id="container">    
                 <div id="divLeft">
                     <br><br>
+                    <label></label>
                     <ul class="menu-list"> 
                     <li><a id="aList" href="#divCategorias">Categorias</a> </li>
                     <li><a id="aList" href="#divProductos" >Productos</a></li>
@@ -195,9 +206,6 @@
 <?php
     if(isset($_POST['btnSalir'])){
         include_once ('../logicaDatos/logout.php'); 
-        include_once ('../Util/Util.php'); 
-
-        destruir_session(); 
     }
 
     

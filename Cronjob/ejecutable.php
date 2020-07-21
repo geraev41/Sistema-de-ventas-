@@ -12,7 +12,6 @@
                 $cantidad = $p[5];
                 $txt.= "\t -ID o Código del producto $id, nombre $nombre, cantidad existente $cantidad\n"; 
             }
-           // echo ($txt); 
             enviar_mail($txt); 
         }else{
             echo ("No hay esta cantidad"); 

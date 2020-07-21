@@ -44,18 +44,39 @@
     function validar_datos($user){
         $userBD = existe_user($user, true);
         if($userBD){
-            session_start(); 
-            $_SESSION['user'] = serialize($userBD); 
-            unserialize($userBD); 
-            if($userBD->tipo == 'ad'){
-                header('Location: /GUI/admin.php?status=Inicio sección&message=Admin');
-            }elseif($userBD->tipo=='cl'){
-                header('Location: /GUI/principal.php?status=principal&message=Bienvenido');
+            if(existe_seccion()){
+                session_start(); 
+                $userSeccion = unserialize($_SESSION['user']); 
+                if($userBD->id == $userSeccion->id){
+                    $_SESSION['existe_user']='is_same'; 
+                    header ('Location: /GUI/index.php?status=Usuario en sección'); 
+                } 
+                if($userBD->id != $userSeccion->id){
+                    $_SESSION['existe_user']='is_diferrent'; 
+                    header ('Location: /GUI/index.php?status=Sección iniciada o datos vacíos'); 
+                } 
+            }else{
+               redirecionar_user($userBD);  
             }
         }else{
             header ('Location: /GUI/index.php?status=error&message=datos inexistentes'); 
         }
     }
+
+   function redirecionar_user($userBD){
+       $_SESSION['user'] = serialize($userBD); 
+        if($userBD->tipo == 'ad'){
+            header('Location: /GUI/admin.php?status=Inicio sección&message=Admin');
+        }elseif($userBD->tipo=='cl'){
+            header('Location: /GUI/principal.php?status=principal&message=Bienvenido');
+        }
+    }
+
+    function existe_seccion(){
+         session_start();
+         $a = isset($_SESSION['user'])?true:false; 
+         return $a;
+     }
 
     function guardar_user($user){
         if(existe_user($user,false)==null){

@@ -1,8 +1,18 @@
 <?php
     session_start(); 
-    if(!$_SESSION || !$_SESSION['user']){
-        header ('Location: /GUI/index.php?status=Inicio'); 
-    }
+   // var_dump("SECCION cLIENTES ".$_SESSION['user']);
+    if($_SESSION && $_SESSION['user']){
+        include_once ('../Entidades/User.php'); 
+        $user = new User();
+        $user= unserialize($_SESSION['user']);
+        if($user->tipo != "cl"){
+            header('Location: /GUI/index.php?status=Inicio');
+        }
+    }else{
+        header('Location: /GUI/index.php?status=Inicio');
+    } 
+
+    
     unset($_SESSION['isFirst']);
     unset($_SESSION['cantidad']);
     ob_start(); 

@@ -1,7 +1,24 @@
 
 <?php
-    session_start(); 
-    session_destroy();
+    session_start();
+
+    if($_SESSION && ($_SESSION['existe_user'] != 'is_same')){
+        include_once ('../Util/Util.php');
+        alert ("Es probable que haya iniciado una sección anteriormente,cierre sección para ingresar con nuevo usuario");
+    }else{
+        if($_SESSION && $_SESSION['user']){
+            include_once ('../Entidades/User.php'); 
+            $user = new User();
+            $user = unserialize($_SESSION['user']);
+            if($user->tipo == "cl"){
+                header('Location: /GUI/principal.php?status=principal&message=Bienvenido');
+            }elseif($user->tipo = "ad"){
+                header('Location: /GUI/admin.php?status=Inicio sección&message=Admin');
+            }
+        }
+    }
+   
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -4,7 +4,5 @@
             alert('$msj'); 
         </script>";
     }
-
-    
    
 ?>
