@@ -26,24 +26,16 @@
      * Valida los datos user, que no esten vacíos
      */
     function validar_user(){
-        try{
-            if(isset($_POST['btnOk'])){
-                $username = $_POST['txtUser']; 
-                $pass = $_POST['txtPass']; 
-                $user = new User();
-                $user->username = $username; 
-                $user->password = $pass; 
-                if(!empty($username) && !empty($pass)){
-                    validar_datos($user); 
-                }else{
-                    header ('Location: /GUI/index.php?status=error&message=datos vacíos'); 
-                }
-            }
-        }catch(Exception $e){
-         header('Location: /GUI/index.php?status=error&message=datos vacios');
-
+        $user = new User();
+        $user->username = $_POST['txtUser']; 
+        $user->password = $_POST['txtPass']; 
+        if(!empty($user->username) && !empty($user->password)){
+            validar_datos($user); 
+        }else{
+            header ('Location: /GUI/index.php?status=error&message=datos vacíos'); 
         }
     }
+
     /**
      * $user Ususario recibido
      * Valida que no este en la sección, o que sea nuevo
@@ -58,6 +50,7 @@
                     $_SESSION['existe_user']='is_same'; 
                     header ('Location: /GUI/index.php?status=Usuario en sección'); 
                 } 
+
                 if($userBD->id != $userSeccion->id){
                     $_SESSION['existe_user']='is_diferrent'; 
                     header ('Location: /GUI/index.php?status=Sección iniciada o datos vacíos'); 
@@ -76,6 +69,7 @@
     */ 
    function redirecionar_user($userBD){
        $_SESSION['user'] = serialize($userBD); 
+       $_SESSION['existe_user']='is_null'; 
         if($userBD->tipo == 'ad'){
             header('Location: /GUI/admin.php?status=Inicio sección&message=Admin');
         }elseif($userBD->tipo=='cl'){

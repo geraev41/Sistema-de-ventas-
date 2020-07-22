@@ -1,8 +1,11 @@
 
 <?php
     session_start();
+    //session_destroy();
 
-    if($_SESSION && ($_SESSION['existe_user'] != 'is_same')){
+    var_dump($_SESSION);
+
+    if($_SESSION && (isset($_SESSION['existe_user']) == 'is_diferrent')){
         include_once ('../Util/Util.php');
         alert ("Es probable que haya iniciado una sección anteriormente,cierre sección para ingresar con nuevo usuario");
     }else{

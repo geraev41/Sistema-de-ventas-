@@ -46,9 +46,9 @@
                     <br><br>
                     <label></label>
                     <ul class="menu-list"> 
-                    <li><a id="aList" href="#divCategorias">Categorias</a> </li>
-                    <li><a id="aList" href="#divProductos" >Productos</a></li>
-                    <li><a id="aList" href="#divClientes" >Clientes</a></li>
+                        <li><a id="aList" href="#divCategorias">Categorias</a> </li>
+                        <li><a id="aList" href="#divProductos" >Productos</a></li>
+                        <li><a id="aList" href="#divClientes" >Clientes</a></li>
                     <ul>
                     <a href ="../logicaDatos/logout.php"id="idBtn" class="button is-outlined is-small is-danger">Cerrar Sección<a>
                 </div>

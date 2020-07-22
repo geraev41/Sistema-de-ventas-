@@ -9,14 +9,13 @@
         public $cantidad;
         public $descripcion;
         public $precio;
-        public $total;
+        public $costo;
 
         public function  ____construct($nombre, $descripcion, $imagen, $precio){
             $this->nombre =$nombre; 
             $this->descripcion =$descripcion;
             $this->imagen=$imagen;
             $this->precio =$precio; 
-            
         }
     }
 

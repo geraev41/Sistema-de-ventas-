@@ -36,6 +36,22 @@
         $con->close(); 
         return $result; 
     }
+      /**
+     * $id producto a editar, recibido para cambiar en la base datos
+     * $cantidad a restar
+     * Baja la cantidad del stock
+     */
+    function modificar_producto_stock($id,$cantidad){
+        $con = getConexion(); 
+        $sql ="UPDATE `producto` SET stock='$cantidad' WHERE id =$id"; 
+        $result = $con->query($sql);
+        if($con->connect_errno){
+            $con->close();
+            return false; 
+        }
+        $con->close(); 
+        return $result; 
+    }
 
     /**
      * $id id del producto

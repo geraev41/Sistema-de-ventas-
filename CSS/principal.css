@@ -7,7 +7,7 @@
 
 #divLeft{
     float: left;
-    width: 20%; /*es 20%*/
+    width: 15%; /*es 20%*/
     height: 100vh;   
     position: relative;
     background-color:#333;
@@ -57,4 +57,41 @@
 #divCompras:target{
     display: block; 
     opacity: 1;
+}
+
+ul{
+    /*
+        Define list-style in none, 
+        the user cannot select
+    */
+    list-style: none;
+    padding: 0px;
+    margin-top: 8px;
+    user-select: none;
+}
+
+#aList{
+   /*
+    define display, text-decoration: is none
+   */
+    color: silver;
+    display: block;
+    text-decoration: none;
+    padding: 5px;
+}
+li{
+    /*
+    Has a transition that lasts 0.2s
+    */
+    outline:1px solid  #2a2a2a;
+    transition: border 0.2s;
+}
+
+li:hover{
+    /*
+    When the mouse is on it has a new background-color
+    and new border
+    */
+    background-color: black;
+    border-left: 4px solid rgb(54, 54, 54);
 }
