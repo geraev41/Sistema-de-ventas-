@@ -33,7 +33,7 @@ ob_start();
         <form method="post" action="producto.php" enctype="multipart/form-data">
             <div class="container">
                 <div class="columns">
-                    <div class ="column">
+                    <div class ="column is-half is-offset-one-quarter">
                        <?php 
                             include_once ('../logicaDatos/productoDatos.php');
                             $btnName = "btnAddProducto"; 
@@ -55,16 +55,31 @@ ob_start();
                            
 
 
-                       ?> 
-                        <input class="" placeholder="Nombre" name ="txtNombre" type="text" value="<?php echo ("$nombre")?>"><br><br>
-                        <input class="" placeholder="Descripción" name ="txtDescrip" type="text" value="<?php echo ("$descrip")?>" ><br><br>
-                        <input class="" placeholder="Imagen" name ="Image" type="file"><br><br>
+                       ?> <br><br>
+                        <input class="input is-primary" placeholder="Nombre" name ="txtNombre" type="text" value="<?php echo ("$nombre")?>"><br><br>
+                        <input class="input is-primary" placeholder="Descripción" name ="txtDescrip" type="text" value="<?php echo ("$descrip")?>" ><br><br>
+                        <div class="file" style="margin-left:35%;">
+                            <label class="file-label">
+                                <input class="file-input" type="file" name="Image">
+                                <span class="file-cta">
+                                <span class="file-icon">
+                                    <i class="fas fa-upload"></i>
+                                </span>
+                                <span class="file-label">
+                                   Elija foto
+                                </span>
+                                </span>
+                            </label>
+                        </div>
+
                         <img height="600px" width="500px" src="data:/image/jpg;base64,<?php echo $image?>" >
                         <br><br>
-                        <input class="" placeholder="Stock" name ="txtStock" type="text" value="<?php echo ("$stock")?>"><br><br>
-                        <input class="" placeholder="Precio" name ="txtPrecio" type="text" value="<?php echo ("$precio")?>"><br><br>
-                        <input class="" value="Regresar" name="btnVolver" type="submit">
-                        <input class="" value="<?php echo("$btnValue")?>" name="<?php echo("$btnName")?>" type="submit">
+                        <input class="input is-primary" placeholder="Stock" name ="txtStock" type="text" value="<?php echo ("$stock")?>"><br><br>
+                        <input class="input is-primary" placeholder="Precio" name ="txtPrecio" type="text" value="<?php echo ("$precio")?>"><br><br>
+                        <div style = "margin-left:32%;">
+                            <input class="button is-info" value="Regresar" name="btnVolver" type="submit">
+                            <input class="button is-success" value="<?php echo("$btnValue")?>" name="<?php echo("$btnName")?>" type="submit">
+                        </div>
                     </div>
                 </div>
             </div>

@@ -14,8 +14,6 @@
         return $result; 
     }
 
-
-
     function mostrar_compras($id_usuario){
         $con = getConexion(); 
         $sql = "SELECT * FROM compras WHERE id_cliente = $id_usuario";
@@ -30,6 +28,34 @@
             array_push($comprasDevolver, cargar_compra($compra));
         }
         return $comprasDevolver; 
+    }
+
+    function consultar_compra($id_compra){
+        $con = getConexion(); 
+        $sql = "SELECT * FROM compras WHERE id = $id_compra";
+        $result = $con->query($sql);
+        if($con->connect_errno){
+            $con->close(); 
+            return false; 
+        }
+        $comprasDevolver=array();
+        $compras = $result->fetch_all();
+        foreach ($compras as $compra) {
+            array_push($comprasDevolver, cargar_compra($compra));
+        }
+        return $comprasDevolver; 
+    }
+
+
+    function eliminar_compra($id){
+        $con = getConexion(); 
+        $sql = "DELETE FROM compras WHERE id = $id";
+        $result = $con->query($sql);
+        if($con->connect_errno){
+            $con->close(); 
+            return false; 
+        }
+        return $result; 
     }
 
     function cargar_compra($compraResult){

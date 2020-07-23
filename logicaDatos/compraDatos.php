@@ -8,7 +8,14 @@
     include_once ('../logicaDatos/carroDatos.php'); 
 
 
-
+    if(isset($_GET['id_compra_delete'])){
+       if(borrar_compra(intval($_GET['id_compra_delete']))){
+            header('Location: /GUI/principal.php?status=compra eliminada');
+        }
+    }
+    function borrar_compra($id){
+        return eliminar_compra($id);
+    }
 
     function generar_compra($id_carro, $listaProductos, $users){
         $listaCompras = convertir_to_compra($listaProductos,$users);
@@ -17,7 +24,7 @@
             $cantidadSelecionada = $p->stock;
             $cantidades = datos_cantidades($p->id, $users->id); 
             $cantidadDisponible =  $cantidadSelecionada- $cantidades[0][3]; 
-            modificar_producto_stock($p->id,$cantidadDisponible);
+            modificar_producto_stock($p->id,$cantidadDisponible,$cantidades[0][3]);
             eliminar_producto_d_carro($id_carro, $p->id);
         }
         return true; 
@@ -60,6 +67,10 @@
 
     function ver_compras($id_usuario){
         return mostrar_compras($id_usuario); 
+    }
+
+    function traer_compra($id_compra){
+        return consultar_compra($id_compra)[0];
     }
 
 ?>

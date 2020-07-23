@@ -3,7 +3,6 @@
     session_start();
     //session_destroy();
 
-    var_dump($_SESSION);
 
     if($_SESSION && (isset($_SESSION['existe_user']) == 'is_diferrent')){
         include_once ('../Util/Util.php');

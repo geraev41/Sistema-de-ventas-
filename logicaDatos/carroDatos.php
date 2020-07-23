@@ -22,6 +22,10 @@
         guardar_producto_en_carro($carro); 
     }
 
+    /**
+     * $carro a guardar
+     * guardar un carro de usuario en la base datos
+     */
     function guardar_producto_en_carro($carro){
         $carEncontrado = buscar_carrito($carro->id_usuario);
         $carro->cantidad = 1; 
@@ -40,7 +44,9 @@
         return; 
 
     }
-
+    /**
+     * 
+     */
     function mostrar_productos_x_carro($id_usuario){
         $carEncontrado = buscar_carrito($id_usuario);
         if(!$carEncontrado){

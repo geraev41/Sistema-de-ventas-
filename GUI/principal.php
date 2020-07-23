@@ -205,8 +205,8 @@
                                     <td>$c->descripcion</td>
                                     <td>₡$c->precio</td>
                                     <td>₡$c->costo</td>
-                                    <td><a>Quitar</a></td>
-                                    <td><a>Ver detalles</a></td>
+                                    <td><a href ='../logicaDatos/compraDatos.php?id_compra_delete=$c->id'>Quitar</a></td>
+                                    <td><a href='orden.php?id_compra=$c->id'> Ver detalles</a></td>
                                 </tr>
                                 ";
                             }

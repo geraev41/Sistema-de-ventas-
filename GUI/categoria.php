@@ -41,7 +41,7 @@
 
                    ?> 
                     <div class="column is-half is-offset-one-quarter">
-                        <input type="text" value="<?php echo ("$nombre")?>" class="input is-primary " placeholder="Nombre categoria" name="txtCategoria"><br><br>
+                        <input type="text" value="<?php echo ("$nombre")?>" class="input is-primary" placeholder="Nombre categoria" name="txtCategoria"><br><br>
                         <input style="margin-left:10%;" type="submit" class="button is-info" name="btnCancelar" value="Volver">
                         <input  style="margin-left:10%;"type="submit" class="button is-success" name="<?php echo("$btnName")?>" value="<?php echo ("$btnValue");?>">
 

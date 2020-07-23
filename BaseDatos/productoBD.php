@@ -41,9 +41,9 @@
      * $cantidad a restar
      * Baja la cantidad del stock
      */
-    function modificar_producto_stock($id,$cantidad){
+    function modificar_producto_stock($id,$cantidad,$vendidos){
         $con = getConexion(); 
-        $sql ="UPDATE `producto` SET stock='$cantidad' WHERE id =$id"; 
+        $sql ="UPDATE `producto` SET stock='$cantidad', vendidos='$vendidos' WHERE id =$id"; 
         $result = $con->query($sql);
         if($con->connect_errno){
             $con->close();
@@ -112,6 +112,17 @@
         return $producto_car; 
     }
 
+    // function verificar_producto_en_carro($id_producto){
+    //     $con = getConexion(); 
+    //     $sql = "SELECT * FROM asoc_producto_carro WHERE id_producto = $id_producto";
+    //     $result = $con->query($sql);
+    //     if($con->connect_errno){
+    //         $con->close(); 
+    //         return fase; 
+    //     }
+    //     return $result->fetch_all();
+    // }
+
     /**
      * $id id del producto
      * elimina un producto por id
@@ -141,6 +152,8 @@
         $p->imagen= $resultP[4]; 
         $p->stock = $resultP[5]; 
         $p->precio = $resultP[6]; 
+        $p->vendidos = $resultP[7]; 
+
         return $p; 
     }
 

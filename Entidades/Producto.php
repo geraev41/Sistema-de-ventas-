@@ -9,6 +9,7 @@
         public $imagen; 
         public $stock; 
         public $precio; 
+        public $vendidos; 
 
         public function  ____construct($id_categoria, $nombre, $descripcion, $imagen, $stock, $precio){
             $this->id_categoria =$id_categoria; 

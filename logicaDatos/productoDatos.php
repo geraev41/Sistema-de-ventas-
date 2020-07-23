@@ -1,6 +1,7 @@
 
 <?php
     include_once ('../Entidades/Producto.php'); 
+    include_once ('../Entidades/User.php'); 
     include_once ('../BaseDatos/productoBD.php');
 
     /**
@@ -35,7 +36,9 @@
      * Muestra producto por categoria
      */
     function productos_x_cat($id_categoria){
-        return mostrar_productos_x_categoria($id_categoria);
+        //llamar
+        return quitar_pr_existentes_en_carros(mostrar_productos_x_categoria($id_categoria));
+        //return mostrar_productos_x_categoria($id_categoria);
     }
     /**
      *Edita producto
@@ -76,4 +79,50 @@
         }
      
     }
+
+    /**
+     * Devuelve solo los productod que no esten en el carro
+     */
+    function quitar_pr_existentes_en_carros($listaProductosM){
+        include_once ('carroDatos.php'); 
+        $user = new User(); 
+        $user = unserialize($_SESSION['user']);
+        $carro = mostrar_productos_x_carro(intval($user->id)); 
+        $listaProductos = productos_d_carro($carro); 
+        $listaDevolver = array();
+        if(!empty($listaProductos)){
+           foreach ($listaProductosM as $p) {
+               if(validar_pr($p, $listaProductos)){
+                    array_push($listaDevolver, $p);
+               }
+           }
+           return $listaDevolver; 
+        }
+        return $listaProductosM;  
+    }
+    /**
+     * Verifica los carritos que traen productos, para meterla a una nueva unicamente de productos
+     */
+    function productos_d_carro($carritos){
+        $productos = array();
+        foreach ($carritos as $c) {
+            if($c->listaProductos){
+                array_push($productos, $c->listaProductos[0]); 
+            }
+        }
+        return $productos; 
+    }
+
+    /**
+     * Valida los id que están en el carro
+     */
+    function validar_pr($p, $listaProductos){
+        foreach ($listaProductos as $pr) {
+           if($pr->id == $p->id){
+             return false; 
+           }
+        }
+        return true; 
+    }
+
 ?>

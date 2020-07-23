@@ -115,9 +115,9 @@
                                 <th>Descripción</th>
                                 <th>Stock</th>
                                 <th>Precio</th>
+                                <th>Vendidos</th>
                                 <th>Editar</th>
                                 <th>Eliminar</th>
-
                             </tr>
                             <tbody>
                                 <?php
@@ -137,6 +137,7 @@
                                                         <td>$p->descripcion</td>
                                                         <td>$p->stock</td>
                                                         <td>$p->precio</td>
+                                                        <td>$p->vendidos</td>
                                                         <td><a href='producto.php?id_receive=$p->id&&message=edit'>Editar <img src='../Imagenes/edit.png'></a></td>
                                                         <td><input  class='button is-outlined is-small is-danger is-rounded' onclick='eliminar($p->id);'type='button' value='Eliminar'></td>
 
