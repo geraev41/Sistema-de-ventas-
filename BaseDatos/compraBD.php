@@ -46,7 +46,6 @@
         return $comprasDevolver; 
     }
 
-
     function eliminar_compra($id){
         $con = getConexion(); 
         $sql = "DELETE FROM compras WHERE id = $id";

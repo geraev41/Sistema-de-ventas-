@@ -17,7 +17,6 @@
         }
         return false;
     }
-
     
     function delete_categoria($id){
         include_once ('conexion.php');

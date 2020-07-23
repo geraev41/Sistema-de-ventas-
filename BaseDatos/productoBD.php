@@ -112,21 +112,6 @@
         return $producto_car; 
     }
 
-    // function verificar_producto_en_carro($id_producto){
-    //     $con = getConexion(); 
-    //     $sql = "SELECT * FROM asoc_producto_carro WHERE id_producto = $id_producto";
-    //     $result = $con->query($sql);
-    //     if($con->connect_errno){
-    //         $con->close(); 
-    //         return fase; 
-    //     }
-    //     return $result->fetch_all();
-    // }
-
-    /**
-     * $id id del producto
-     * elimina un producto por id
-     */
     function delete_producto($id){
         $con = getConexion(); 
         $sql ="DELETE FROM producto
