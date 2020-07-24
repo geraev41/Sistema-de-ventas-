@@ -17,8 +17,6 @@
             }
         }
     }
-   
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,7 +55,6 @@
                         <input class="button is-outlined is-small is-danger " value="Iniciar Sección" name="btnOk" type="submit">
                       </div> 
                    </div>
-
                 </div>
             </div>
         </form> 
