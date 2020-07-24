@@ -89,7 +89,7 @@
                         include_once ('../Util/Util.php');
                         include_once ('../logicaDatos/productoDatos.php'); 
                         if(isset($_POST['select'])){
-                        $productos =productos_x_cat(intval($_POST['select']));
+                        $productos =productos_x_cat(intval($_POST['select']),false);
                         if($productos){
                             $txt = ""; 
                                 foreach($productos as $p){
@@ -214,9 +214,17 @@
                             }
                             echo ($txt); 
                         }
+
                     ?>
                 </tbody>
-            </table>    
+            </table>   
+           <?php
+                $total = 0; 
+                foreach ($listaCompras as $c) {
+                    $total += $c->costo; 
+                }
+                echo (" Todas sus compras tienen un costo final de ₡$total");
+           ?>  
         </div>
     </div>
 </form> 

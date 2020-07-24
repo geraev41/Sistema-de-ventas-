@@ -56,6 +56,7 @@
                     header ('Location: /GUI/index.php?status=Sección iniciada o datos vacíos'); 
                 } 
             }else{
+                $_SESSION['user'] = serialize($userBD); 
                redirecionar_user($userBD);  
             }
         }else{
@@ -68,8 +69,6 @@
     * valida si es cliente o admin para ingresar a la interfaz indicada
     */ 
    function redirecionar_user($userBD){
-       $_SESSION['user'] = serialize($userBD); 
-       $_SESSION['existe_user']='is_null'; 
         if($userBD->tipo == 'ad'){
             header('Location: /GUI/admin.php?status=Inicio sección&message=Admin');
         }elseif($userBD->tipo=='cl'){

@@ -53,6 +53,8 @@
                         <li><a id="aList" href="#divCategorias">Categorias</a> </li>
                         <li><a id="aList" href="#divProductos" >Productos</a></li>
                         <li><a id="aList" href="#divClientes" >Clientes</a></li>
+                        <li><a id="aList" href="#divGanancias" >Mis ganancias</a></li>
+
                     <ul>
                     <a href ="../logicaDatos/logout.php"id="idBtn" class="button is-outlined is-small is-danger">Cerrar Sección<a>
                 </div>
@@ -129,7 +131,7 @@
                                 include_once ('../logicaDatos/productoDatos.php'); 
 
                                     if(isset($_POST['select'])){
-                                    $productos =productos_x_cat(intval($_POST['select']));
+                                    $productos =productos_x_cat(intval($_POST['select']),true);
                                     if($productos){
                                         $txt = ""; 
                                             foreach($productos as $p){
@@ -140,7 +142,7 @@
                                                         <td>$p->nombre</td>
                                                         <td>$p->descripcion</td>
                                                         <td>$p->stock</td>
-                                                        <td>$p->precio</td>
+                                                        <td>₡$p->precio</td>
                                                         <td>$p->vendidos</td>
                                                         <td><a href='producto.php?id_receive=$p->id&&message=edit'>Editar <img src='../Imagenes/edit.png'></a></td>
                                                         <td><input  class='button is-outlined is-small is-danger is-rounded' onclick='eliminar($p->id);'type='button' value='Eliminar'></td>
@@ -149,7 +151,7 @@
                                                 ";
                                             }
                                             echo ($txt); 
-                                    }
+                                        }
                                     }
                                 ?>
                             </tbody>
@@ -187,7 +189,18 @@
                             </tbody>
                         </table>
                     </div>
+                    <div id="divGanancias">
 
+                       <strong> Sus ganancias por todas las ventas </strong>  
+                                    <?php
+                                        $list = valores_ganancias();
+                                        $value = 0;
+                                        foreach ($list as $l) {
+                                          $value+=$l[1];
+                                        }
+                                        echo("₡$value");
+                                    ?>
+                    </div>
                 </div>
             </div>
     </section>

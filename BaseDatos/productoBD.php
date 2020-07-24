@@ -36,6 +36,22 @@
         $con->close(); 
         return $result; 
     }
+    /**
+     * consulta las gancias acumuladas
+     */
+    function consultar_ganancias(){
+        $con = getConexion(); 
+        $sql = "SELECT * FROM ganancias";
+        $result = $con->query($sql);
+        if($con->connect_errno){
+            $con->close(); 
+            return false; 
+        }
+        return $result->fetch_all(); 
+    }
+
+
+
       /**
      * $id producto a editar, recibido para cambiar en la base datos
      * $cantidad a restar

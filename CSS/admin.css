@@ -53,6 +53,18 @@
     display: block; 
     opacity: 1;
 }
+
+#divGanancias{
+    display: none;
+    opacity: 0.8;
+}
+
+
+#divGanancias:target{
+    display: block; 
+    opacity: 1;
+}
+
 #idBtn{
    width: 40%;
     top: 60vh; 

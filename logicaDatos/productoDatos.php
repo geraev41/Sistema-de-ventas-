@@ -35,10 +35,12 @@
     /**
      * Muestra producto por categoria
      */
-    function productos_x_cat($id_categoria){
+    function productos_x_cat($id_categoria,$isAdmin){
         //llamar
-        return quitar_pr_existentes_en_carros(mostrar_productos_x_categoria($id_categoria));
-        //return mostrar_productos_x_categoria($id_categoria);
+        if(!$isAdmin){
+            return quitar_pr_existentes_en_carros(mostrar_productos_x_categoria($id_categoria));
+        }
+        return mostrar_productos_x_categoria($id_categoria);
     }
     /**
      *Edita producto
@@ -92,13 +94,18 @@
         $listaDevolver = array();
         if(!empty($listaProductos)){
            foreach ($listaProductosM as $p) {
-               if(validar_pr($p, $listaProductos)){
+               if(validar_pr($p, $listaProductos) && ($p->stock > 0)){
                     array_push($listaDevolver, $p);
                }
            }
            return $listaDevolver; 
         }
-        return $listaProductosM;  
+        foreach ($listaProductosM as $p) {
+            if(($p->stock > 0)){
+                array_push($listaDevolver, $p);
+           }
+        }
+        return $listaDevolver;  
     }
     /**
      * Verifica los carritos que traen productos, para meterla a una nueva unicamente de productos
@@ -123,6 +130,12 @@
            }
         }
         return true; 
+    }
+    /**
+     * obtiene la cantidad de productos vendidos
+     */
+    function valores_ganancias(){
+        return consultar_ganancias(); 
     }
 
 ?>

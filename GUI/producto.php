@@ -78,7 +78,7 @@ ob_start();
                         <img height="600px" width="500px" src="data:/image/jpg;base64,<?php echo $image?>" >
                         <br><br>
                         <input class="input is-primary" placeholder="Stock" name ="txtStock" type="text" value="<?php echo ("$stock")?>"><br><br>
-                        <input class="input is-primary" placeholder="Precio" name ="txtPrecio" type="text" value="<?php echo ("$precio")?>"><br><br>
+                        <input class="input is-primary" placeholder="Precio por unidad ₡" name ="txtPrecio" type="text" value="<?php echo ("$precio")?>"><br><br>
                         <div style = "margin-left:32%;">
                             <input class="button is-info" value="Regresar" name="btnVolver" type="submit">
                             <input class="button is-success" value="<?php echo("$btnValue")?>" name="<?php echo("$btnName")?>" type="submit">

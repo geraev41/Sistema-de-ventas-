@@ -16,8 +16,23 @@
             $con->close(); 
             return false; 
         }
+        guardar_ganancias($c->costo);
         return $result; 
     }
+    /**
+     * Guarda el valor de cada pago de productos comprados en una tabla de ganancias acumuladas
+     */
+    function guardar_ganancias($valor){
+        $con = getConexion(); 
+        $sql = "INSERT INTO ganancias(costos) VALUES('$valor')";
+        $result = $con->query($sql);
+        if($con->connect_errno){
+            $con->close(); 
+            return false; 
+        }
+        return true; 
+    }
+
     /**
      * $id_usuario id del usuario que realizó la compra
      * obtiene todas las compras de un usuario

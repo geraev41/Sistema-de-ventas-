@@ -36,7 +36,8 @@
             $cantidadSelecionada = $p->stock;
             $cantidades = datos_cantidades($p->id, $user->id); 
             $cantidadDisponible =  $cantidadSelecionada- $cantidades[0][3]; 
-            modificar_producto_stock($p->id,$cantidadDisponible,$cantidades[0][3]);
+            $vendidos = $cantidades[0][3]+$p->vendidos; 
+            modificar_producto_stock($p->id,$cantidadDisponible,$vendidos);
             eliminar_producto_d_carro($id_carro, $p->id);
         }
         return true; 
