@@ -3,6 +3,10 @@
     require_once ('../Entidades/Categoria.php'); 
     include_once ('productoBD.php'); 
 
+    /**
+     * $categoria categoria a guardar en la base datos
+     * inserta una categoria a la base datos
+     */
     function insertar_categoria($categoria){
         if(categoria_x_nombre($categoria, true)){
             $con = getConexion(); 
@@ -17,7 +21,10 @@
         }
         return false;
     }
-    
+    /**
+     * $id id de la categoria
+     * elimina la categoria de la base datos
+     */
     function delete_categoria($id){
         include_once ('conexion.php');
         $con = getConexion(); 
@@ -30,7 +37,9 @@
         $con->close(); 
         return $result; 
     }
-
+    /**
+     * obtiene todas las categorias disponibles
+     */
     function get_categorias(){
         include_once ('conexion.php');
         $con = getConexion(); 
@@ -49,7 +58,11 @@
         $con->close(); 
         return $get_categ; 
     }
-
+    /**
+     * $categoria categoria a busccar por nombre
+     * $isSave true, si es para guardar o false si es solo para buscar
+     * busca una categoria por mnombre, para no guardar con mismo nombre
+     */
     function categoria_x_nombre($categoria, $isSave){
         $con = getConexion(); 
         $sqlNombre = "SELECT * FROM categoria WHERE nombre = '$categoria->nombre'"; 
@@ -69,6 +82,10 @@
         return true; 
     }
 
+    /**
+     * $categoria categoria a editar
+     * edita una categoria en especifico
+     */
     function editar_categoria($categoria){
         if(categoria_x_nombre($categoria, false)){
             include_once ('conexion.php');
@@ -84,6 +101,10 @@
          }
     }
 
+    /**
+     * $id_categoria id de la categoria
+     * muestra una categoria por el id 
+     */
     function mostrar_categoria($id_categoria){
         include_once ('conexion.php');
         $con = getConexion(); 
@@ -104,6 +125,10 @@
         return $get_categ; 
     }
 
+    /**
+     * $catResult obtenido de la base datos
+     * obtiene todos los datos de una categoria
+     */
     function obtener_categoria($catResult){
         $listPro = mostrar_productos_x_categoria($catResult[0]); 
         $cat= new Categoria(); 

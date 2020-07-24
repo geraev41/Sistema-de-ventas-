@@ -1,7 +1,9 @@
 <?php
     include_once ('../Entidades/User.php'); 
+    /**
+     * valida que el tipo de usuario en seccion sea admin
+     */
     session_start(); 
-    //var_dump("SECCION ADMIN ".$_SESSION['user']);
     if($_SESSION && $_SESSION['user']) {
         $user = new User();
         $user = unserialize($_SESSION['user']);
@@ -11,8 +13,10 @@
     }else{
         header('Location: /GUI/index.php?status=Inicio');
     } 
-    
 
+    /**
+     * obtiene un mensaje del url para mostrar un mensaje
+     */
     include_once ('../Util/Util.php');
     if(isset($_GET['message'])){ 
         switch ($_GET['message']) {
@@ -188,12 +192,19 @@
             </div>
     </section>
     <script type="text/javascript">
+        /**
+        * id del producto a eliminar
+        * confirma si quiere realmente eliminar un producto
+         */
         function eliminar(id){
             if(confirm("¿Realmente esta seguro de querer eliminar este producto?")){
                 window.location.href= "../logicaDatos/productoDatos.php?id="+id; 
             }
         }
-
+        /**
+        * id del producto a eliminar
+        * confirma si quiere realmente eliminar una categoria
+         */
         function eliminarCat(id){
             if(confirm("¿Realmente esta seguro de querer eliminar esta categoria?")){
                 window.location.href= "../logicaDatos/categoriaDatos.php?id="+id; 

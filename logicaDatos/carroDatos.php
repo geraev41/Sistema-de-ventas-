@@ -45,7 +45,9 @@
 
     }
     /**
-     * 
+     * $id_usuario id del usuario
+     * busca un carro del usuario, si no lo obtiene, devuelve un false
+     * si lo encuentra busca los productos asociados
      */
     function mostrar_productos_x_carro($id_usuario){
         $carEncontrado = buscar_carrito($id_usuario);
@@ -54,7 +56,11 @@
         }
         return mostrar_productos_carrito(intval($carEncontrado->id)); 
     }
-
+    /**
+     * $id_producto del producto asociado
+     * $id_usuario del usuario con el carro
+     * obtiene las cantidades que el usuario reservo del producto
+     */
    function datos_cantidades($id_producto, $id_usuario){
         $carEncontrado = buscar_carrito($id_usuario);
         if(!$carEncontrado){
@@ -62,7 +68,10 @@
         }
         return cargar_cantidades_d_carro($id_producto, intval($carEncontrado->id));
    }
-
+    /**
+     * $carro
+     * modifica las cantidades que el usuario reservo del producto
+     */
    function modificar_cantidades($carro){
         $carEncontrado = buscar_carrito($carro->id_usuario);
         if(!$carEncontrado){
@@ -72,13 +81,18 @@
         return editar_cantidades($carro); 
    }
 
+     /**
+     * $id_pro del producto asociado
+     * $id_carro del carro del usuario
+     * quita del carro un producto
+     */
    function quitar_d_carrito($id_carro,$id_pro){
-   if(eliminar_producto_d_carro($id_carro, $id_pro)){
-        header('Location: /GUI/principal.php?status=principal&message=Descartado con exitó');
-        return; 
-   } 
+        if(eliminar_producto_d_carro($id_carro, $id_pro)){
+                header('Location: /GUI/principal.php?status=principal&message=Descartado con exitó');
+                return; 
+        } 
 
-}
+    }
 
 
 ?>

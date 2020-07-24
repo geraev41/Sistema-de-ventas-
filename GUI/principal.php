@@ -1,6 +1,8 @@
 <?php
     session_start(); 
-   // var_dump("SECCION cLIENTES ".$_SESSION['user']);
+    /**
+     * Valida que el usuario en session sea de tipo cliente
+     */
     if($_SESSION && $_SESSION['user']){
         include_once ('../Entidades/User.php'); 
         $user = new User();

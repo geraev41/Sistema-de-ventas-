@@ -2,6 +2,9 @@
 
 ob_start(); 
     session_start();
+    /**
+     * Obtiene un mensaje del url y lo guarda en sesssion
+     */
     if(isset($_GET['id_receive'])){
         $mesa = $_GET['message'];
         switch ($mesa) {
@@ -101,7 +104,9 @@ ob_start();
     if(isset($_POST['btnEditProducto'])){
         get_datos(true);
     }
-
+    /**
+     * $isEdit si false valida datos, si no los edita
+     */
     function get_datos($isEdit){
         include_once ('../Entidades/Producto.php');
         $p = new Producto();
@@ -118,7 +123,9 @@ ob_start();
             editar_datos($p);
         }
     }
-
+    /**
+     * $p producto a validar datos y guardar
+     */
     function validar_datos($p){
         try {
             include_once ('../logicaDatos/productoDatos.php');
@@ -133,7 +140,9 @@ ob_start();
             alert($e->getMessage());
         }
     }
-
+     /**
+     * $p producto a validar datos y editar
+     */
     function editar_datos($p){
         try {
             include_once ('../logicaDatos/productoDatos.php');

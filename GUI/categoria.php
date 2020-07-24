@@ -1,5 +1,8 @@
 <?php
     session_start(); 
+    /**
+     * obtiene un mensaje del url, y lo guarda en session
+     */
     if(isset($_GET['message'])){
         switch ($_GET['message']) {
             case 'edit':

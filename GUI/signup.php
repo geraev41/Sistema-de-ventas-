@@ -54,7 +54,9 @@
         obtener_datos(); 
     }
 
-
+    /**
+     * Obtiene los datos de la interfaz, y luego los guarda
+     */
     function obtener_datos(){
         $user = new User(); 
         $user->nombre = $_POST['txtNombre'];
@@ -77,7 +79,10 @@
         }
         
     }
-
+    /**
+     * $pass contraseña ingresada
+     * $rePass contraseña a confirmar
+     */
     function confirmar_password($pass, $rePass){
         $isOkay = $pass==$rePass?true:false; 
         return $isOkay; 

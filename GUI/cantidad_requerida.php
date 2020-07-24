@@ -76,6 +76,11 @@
             header('Location: /GUI/principal.php?status=principal&message=Modificado');
         }
     }
+    /**
+     * $isEdit si es editar, obtiene la cantidad de la session, si no del POST
+     * $id_producto id del producto
+     * $user usuario en la sección
+     */
     function calcular($isEdit,$p,$id_producto,$user){
         $cantidad = $isEdit?$_SESSION['cantidad']:$_POST['txtCantidad']; 
         $valor = $p->precio; 

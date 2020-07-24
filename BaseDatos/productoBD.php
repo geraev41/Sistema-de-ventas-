@@ -111,7 +111,10 @@
         }
         return $producto_car; 
     }
-
+    /**
+     * $id del producto
+     * elimina un producto de los registros
+     */
     function delete_producto($id){
         $con = getConexion(); 
         $sql ="DELETE FROM producto

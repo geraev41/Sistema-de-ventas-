@@ -1,6 +1,11 @@
 <?php
     include_once ('conexion.php');
     include_once ('../Entidades/Compra.php');
+
+    /**
+     * $c compra a guardar
+     * guarda una nueva compra 
+     */
     function insertar_compra($c){
         $con = getConexion(); 
         $sql = "INSERT INTO compras(id_cliente, nombre, imagen, fecha_compra, cantidad, descripcion, precio, costo)
@@ -13,7 +18,10 @@
         }
         return $result; 
     }
-
+    /**
+     * $id_usuario id del usuario que realizó la compra
+     * obtiene todas las compras de un usuario
+     */
     function mostrar_compras($id_usuario){
         $con = getConexion(); 
         $sql = "SELECT * FROM compras WHERE id_cliente = $id_usuario";
@@ -30,6 +38,10 @@
         return $comprasDevolver; 
     }
 
+    /**
+     * $id_compra id de una compra
+     * consulra una compra por id
+     */
     function consultar_compra($id_compra){
         $con = getConexion(); 
         $sql = "SELECT * FROM compras WHERE id = $id_compra";
@@ -45,7 +57,10 @@
         }
         return $comprasDevolver; 
     }
-
+    /**
+     * $id de la compra
+     * elimina una compra de la base datos
+     */
     function eliminar_compra($id){
         $con = getConexion(); 
         $sql = "DELETE FROM compras WHERE id = $id";
@@ -56,7 +71,11 @@
         }
         return $result; 
     }
-
+    
+    /**
+     * $compraResult obtenido de la base datos
+     * carga una pregunta con todos los datos
+     */
     function cargar_compra($compraResult){
         $c = new Compra();
         $c->id = $compraResult[0];
