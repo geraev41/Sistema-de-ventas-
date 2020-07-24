@@ -112,12 +112,14 @@
      */
     function productos_d_carro($carritos){
         $productos = array();
-        foreach ($carritos as $c) {
-            if($c->listaProductos){
-                array_push($productos, $c->listaProductos[0]); 
+        if($carritos){
+            foreach ($carritos as $c) {
+                if($c->listaProductos){
+                    array_push($productos, $c->listaProductos[0]); 
+                }
             }
+            return $productos; 
         }
-        return $productos; 
     }
 
     /**
